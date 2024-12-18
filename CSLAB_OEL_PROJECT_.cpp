@@ -10,8 +10,41 @@ void displayMenu();
 void random_motivation();
 void academictracker();
 int loginfo();
-void academictracker();
+void random_revising();
 int main();
+//113
+void random_revising(){// gives user recall method and course study materital locations
+        cout<<endl<<endl;
+        cout <<"STUDY GUIDE OF THE DAY"<<endl;
+		string randomrevsing[]={"Active Recall: Test yourself without notes to enhance memory retention.",
+	"Spaced Repetition: Review material at increasing intervals for better long-term retention.",
+	"Pomodoro Technique: Study in 25-minute intervals, with short breaks.",
+	"Interleaved Practice: Mix different subjects/topics during study sessions.",
+	"Summarization: Take notes, then rewrite in your own words for better understanding.",
+	"Teach Others: Explaining concepts reinforces your understanding.",
+	"Visual Aids: Use diagrams and charts for complex topics."};
+	int size=sizeof(randomrevsing)/sizeof(randomrevsing[0]);
+	srand(time(0));
+	int random=rand()%size;
+	cout<<"\t"<<endl;
+	cout<<randomrevsing[random]<<endl;
+	cout <<endl<<endl;
+	cout <<"Channel for Practising your concepts today:"<<endl;
+	string randomchannels[]={
+	"MIT OpenCourseWare: Complete MIT course lectures.",
+	"freeCodeCamp: Comprehensive tutorials on full-stack development and programming.",
+	"CS50: Harvard's computer science course covering algorithms, data structures, and more.",
+	"Tech With Tim: Programming tutorials on Python, AI, and general software engineering.",
+	"The Organic Chemistry Tutor: Tutorials on math, chemistry, and physics.",
+	"CodeWithHarry: Hindi-based tutorials on programming and web development."
+	"Professor Leonard: Detailed math lectures","Khan Academy: In-depth lessons on multiple subjects, especially math and science.",
+	"Google Developers: Official channel for Android, machine learning, and cloud computing tutorials."};
+   size=sizeof(randomchannels)/sizeof(randomchannels[0]);
+     random=rand()%size;
+	cout<<"\t"<<endl;
+	cout<<randomchannels[random]<<endl;
+}
+//113
 void random_motivation(){
 		string randommotivation[]={"Don't waste your time.'","Life goes on.","Believe you can.","Never give up.","Dream big.Aim High","Be unstoppable.","TRUST & BE POSITIVE","Stay positive, work hard.","Keep moving forward.""Create your reality.","Seize the day.","Embrace the journey.","Shine your light."};
 	int size=sizeof(randommotivation)/sizeof(randommotivation[0]);
@@ -19,6 +52,7 @@ void random_motivation(){
 	int random=rand()%size;
 	cout<<"\t\t\t\t\tMOTIVATION OF THE DAY:"<<endl;
 	cout<<"\t\t\t\t\t("<<randommotivation[random]<<")"<<endl;
+	cout <<endl;
 }
 //_______________________TUBA HUSSAIN(639)
 // Maximum number of tasks
@@ -37,6 +71,7 @@ void addTask(TASK tasks[], int& taskCount) {
         return;
     }
     TASK newTask;
+    
     cout << "Enter task name: ";
     cin.ignore();
     getline(cin, newTask.name);
@@ -107,7 +142,7 @@ void displayMenu() {
     int choice;
 
     while (choice != 5){
-	
+	cout <<endl<<endl;
     	cout <<"==================================================================="<<endl;
         cout << "\nTo-Do List Manager\n";
         cout <<"==================================================================="<<endl;
@@ -121,19 +156,25 @@ void displayMenu() {
 
         switch (choice) {
             case 1:
+            cout <<endl<<endl;
                 addTask(tasks, taskCount);
                 break;
             case 2:
+            cout <<endl<<endl;
                 viewTasks(tasks, taskCount);
                 break;
             case 3:
+            cout <<endl<<endl;
                 markTaskComplete(tasks, taskCount);
                 break;
             case 4:
+            cout <<endl<<endl;
                 deleteTask(tasks, taskCount);
                 break;
             case 5:
-                cout << "Exiting To-Do List Manager. Goodbye!\n";
+            cout <<endl<<endl;
+                cout << "Exiting To-Do List Manager. Goodbye!.\nPress any key to go back";
+                getch();
                 break;
             default:
                 cout << "Invalid choice. Please try again.\n";
@@ -152,6 +193,7 @@ void budgetmanager(){//F1
 	int size=sizeof(expense_des)/sizeof(expense_des[0]);
 	int expense[size]={0};
 	int expensesum=0;
+	cout <<endl<<endl;
 while(choice1!=5){	//for cases
 	cout <<"==================================================================="<<endl;
  	cout <<"\t\t\tBUDGET MANAGEMENT"<<endl;
@@ -167,47 +209,53 @@ while(choice1!=5){	//for cases
 	 cin>>choice1;
  		switch(choice1){
  			case 1:
- 				cout <<"__________________________________________________________\n";
+ 			cout <<endl<<endl;
+ 			cout <<"==================================================================="<<endl;
 			cout <<"\t\t\t ADD BUDGET\n";
-			cout <<"__________________________________________________________\n";
+			cout <<"==================================================================="<<endl;
 			cout <<"Enter Monthly Budget:";
 			cin >>budget;
 			cout <<"Enter Date(DD-MM-YY):";
 			cin >>dateString;
 			cout <<"Budget Description:";// intilizing the sizef array large enoungh to store the sentence charachter
-			cin.ignore();
+			cin.ignore();//for buffers
     	    getline(cin,budget_des);
 			cout <<"Added successfully!!"<<endl;  
  			break;
  			case 2:
- 			cout <<"__________________________________________________________\n";
+ 			cout <<endl<<endl;
+ 				cout <<"==================================================================="<<endl;
  	 		cout <<"\t\t\t ADD EXPENSE\n";
- 	 		cout <<"__________________________________________________________\n";
+ 	 			cout <<"==================================================================="<<endl;
  	 		for(int i=0;i<size;i++){
  	 		cout <<"Enter expense for "<<expense_des[i]<<":";
- 	 		cin>>expense[i];
+ 	 		cin>>expense[i];  //using for loop for expenses
  	 		expensesum+=expense[i];
 	  		}
- 	 	cout<<"Total Monthly Expense:"<<expensesum<<endl;
+ 	 
  	  
- 		if(budget==0){
+ 		if(budget<0){
  	 	cout<<"YOU ARE OUT OFF MONEY (SAD) ;]"<<endl;
  	 	cout<<"Remaining Budget: "<<"none"<<endl;
 	  	}
 	  	else if(expensesum>budget){
         remaing=budget-expensesum;
-	  	cout <<"You are out-off Budget:\n "<<endl;
+	  	cout <<"You are out-off Budget:( \n "<<endl;
 	  	cout<<"Exceeding Budget: "<<remaing<<endl;
 	  	cout <<""<<endl;
+	  	cout <<"oR MAY be you didn't add your budget.\nGoing to Add budget in Budgetmanager\n";
+	  	budgetmanager();//recursion for calling function calling
 	  	}
 		else{
 	  	remaing=budget-expensesum;
+	  	cout<<"Total Monthly Expense:"<<expensesum<<endl;
 	  	cout<<"Remaining Budget: "<<remaing<<endl;}
  			break;
  			case 3:
- 			cout <<"__________________________________________________________\n";
+ 			cout <<endl<<endl;
+ 				cout <<"==================================================================="<<endl;
  		 	cout <<"\t\t\t BUDGET SUMMARY\n";
- 		 	cout <<"__________________________________________________________\n";
+ 		 		cout <<"==================================================================="<<endl;
  		 	cout<<"DETAILS ->"<<"EXPENSES"<<endl;
  		 	for(int i=0;i<size;i++){
  		 	cout<<expense_des[i]<<"="<<expense[i]<<endl;
@@ -217,15 +265,19 @@ while(choice1!=5){	//for cases
             cout <<"You saved: "<<remaing<<endl;
  			break;
  		case 4:
- 			cout <<"__________________________________________________________\n";
- 		 cout <<"\t\t\t Budget_log\n";
- 		 cout <<"__________________________________________________________\n";
+ 		cout <<endl<<endl;
+ 			cout <<"==================================================================="<<endl;
+ 		   cout <<"\t\t\t Budget_log\n";
+ 		 	cout <<"==================================================================="<<endl;
           cout <<"Your budget for this month is:"<<budget<<endl;
-          cout <<"You saved\remaining this amount:"<<remaing<<endl;
-          
+          cout <<"You saved\\remaining this amount:"<<remaing<<endl;
+          cout << "You updated the budget on:"<<dateString<<endl;
+          cout <<"Your expense till date are:"<<expensesum<<endl;
  			break;
  		case 5:
- 		    cout<<"Exiting Budget manager\n";
+ 		cout <<endl<<endl;
+ 		    cout<<"Press any key to go back\n";
+ 		    getch();
  			break;
  		default:
  			cout <<"My Dear,select from given choice\n";
@@ -246,13 +298,13 @@ void academictracker(string faculty, string reg_number,int n_subjects,string z[]
 	string array[100];
 	char studied_to;
 	 hr-=duration;//for caclulation of graph mod
-    string note[100];
+    string note;
     int snote=0;
     
     
     while(choice1!=5){//edge cases
 	
-
+cout <<endl<<endl;
 	cout <<"==================================================================="<<endl;
  	cout <<"\t\t\tAcademic Tracker"<<endl;
  	cout <<"==================================================================="<<endl;
@@ -262,13 +314,15 @@ void academictracker(string faculty, string reg_number,int n_subjects,string z[]
  	cout <<"3.View a grade\n";
  	cout <<"4.Progress \n";
  	cout <<"5.CGPA\n";
- 	cout <<"6. Exit\n";
+ 	cout <<"6.Study recommnedations\\tips\n";
+ 	cout <<"7.Exit\n";
  	cout <<"\t\t\tSelect your choice:";cin>>choice1;
  	switch(choice1){
  		case 1:
- 			cout <<"__________________________________________________________\n";
+ 		cout <<endl<<endl;
+ 				cout <<"==================================================================="<<endl;
  		     cout <<"\t\t STUDY_LOG\n";
- 		     cout <<"__________________________________________________________\n";
+ 		    	cout <<"==================================================================="<<endl;
  		     cout <<"\t\tMy dear,enter(y/Y for yes and n/N for no)"<<endl;
  		    do{
 			  cout <<"Did you studied this week?";
@@ -288,18 +342,17 @@ void academictracker(string faculty, string reg_number,int n_subjects,string z[]
 			  	cin.ignore();
 			  
 			  	cout<<"Note for yourself:";
-			  	cin.ignore();
-			  	for(int i=0;i<snote+1;i++){
-			       cin>>note[i];
-				  }
+			  	// intilizing the sizef array large enoungh to store the sentence charachter
+    	        getline(cin,note);
 			  
 				  snote++;}
 			  	
  			break;
  		case 2:
- 			cout <<"__________________________________________________________\n";
+ 		cout <<endl<<endl;
+ 				cout <<"==================================================================="<<endl;
  			cout <<"\t ADD GRADES\n";
- 			cout <<"__________________________________________________________\n";
+ 			cout <<"==================================================================="<<endl;
  			cout <<"Your Courses:\n";
  			if (n_subjects==0){
  				cout <<"No data found going to details in main menu to enter/edit details\n";
@@ -316,18 +369,20 @@ void academictracker(string faculty, string reg_number,int n_subjects,string z[]
  	
  			break;
  		case 3:
- 			cout <<"__________________________________________________________\n";
+ 		cout <<endl<<endl;
+ 			cout <<"==================================================================="<<endl;
  		 cout <<"\t\tView a grade"<<endl;
- 		 cout <<"__________________________________________________________\n";
+ 		 	cout <<"==================================================================="<<endl;
  		 for(int i=0;i<n_subjects;i++){
  				cout <<i+1<<"."<<z[i] <<"\t"<<grade[i]<<endl;
 			 }
  			 cout <<endl;
  			break;
  		case 4:
- 			cout <<"__________________________________________________________\n";
+ 		cout <<endl<<endl;
+		 	cout <<"==================================================================="<<endl;
  		cout <<"\t\tPROGRESS"<<endl;
- 		cout <<"__________________________________________________________\n";
+ 		cout <<"==================================================================="<<endl;
  		cout <<"Your Progress this week\n";
  		cout <<"\n\n";
  		for(int i=0;i<7;i++){
@@ -341,14 +396,14 @@ void academictracker(string faculty, string reg_number,int n_subjects,string z[]
 		cout <<"You studied "<<"="<<t_duration<<" hr\n";
 		cout <<"Your daily streak"<<"="<<day<<endl;
 		cout <<"Your notes to yourself:"<<endl;
-		for(int i=0;i<snote;i++){
-			cout <<note[i]<<endl;
-		}
+	    cout <<note<<endl;
+		
  			break;
  			case 5:
-			 cout <<"__________________________________________________________\n";
+ 			cout <<endl<<endl;
+				cout <<"==================================================================="<<endl;
 			  cout <<"Your CGPA \n";
-			  cout <<"__________________________________________________________\n";
+			  	cout <<"==================================================================="<<endl;
  				{ for (int i = 1; i <= n_subjects; i++) {
         		cout << "Enter grade for subject " << i << " (e.g., out of 4.0): ";
         		cin >> grades[i];
@@ -367,18 +422,24 @@ void academictracker(string faculty, string reg_number,int n_subjects,string z[]
    				cout << "\nTotal Grade Points: " << totalgradepoints << endl;
    				cout << "Total Credit Hours: " << totalcredithours << endl;
     			cout << "CGPA: " << cgpa << endl;
-				 }
- 		case 6:
+				 } break;
+		  case 6:
+		  	   
+                 random_revising();
+ 		case 7:
  			cout <<"Going back to the main menu"<<endl;
+ 			getch();
  			break;
  		default:
  			cout <<"My Dear,select from given choice\n";
 	 }
+	 }
  }
  	
-} 
+ 
 int loginfo(){
 string user_name, pass_word, password, username;
+cout <<endl<<endl;
 cout<<"\tLogin in to your account \n";
 			cout<<"\t Enter your username: ";
 			cin.ignore();
@@ -409,12 +470,13 @@ cout<<"\tLogin in to your account \n";
 int main(){//file 	
     int totalsubjects;
 	int ch=-1,op=0; 
-    cout <<"\n\n\n"<<endl;
+    
     string name="",uni_name,reg_number,faculty;
     int age, n_subjects;
     string array[100];
     string user_name, pass_word, password, username;
     int flag1;
+    cout <<endl<<endl;
  	cout <<"==================================================================="<<endl;
  	cout <<"\t\t\tCAMPUS LIFE MANAGEMENT"<<endl;
  	cout <<"==================================================================="<<endl;
@@ -424,9 +486,9 @@ int main(){//file
    if(op==1){
    
  		string username, password;
- 		   cout <<"__________________________________________________________\n";
+ 		  	cout <<"==================================================================="<<endl;
 		 	cout<<"Register for an account \n";
-		 	cout <<"__________________________________________________________\n";
+		 	cout <<"==================================================================="<<endl;
 			cout<<"\tEnter your username:";							
 			cin.ignore();
 			getline(cin, username);
@@ -452,19 +514,23 @@ int main(){//file
     			cout<<"Enter Faculty:";cin.ignore();
     			getline(cin, faculty);
     			cout<<"How many subjects you are enrolled in(in numbers):\n";cin>>n_subjects;
+    			if (n_subjects>=20){
+    				cout <<"These many subjects aren't allowed!\n";
+				}
     			cout <<"Enter your subjects name:"<<endl;
     			for(int i=0;i<n_subjects;i++){
      			cout <<"Enter subject"<<i+1<<endl;
      			cin>>array[i];
 	 				}cout<<endl;
+	 				
     			cout <<"DATA SAVED SUCCESSFULLY ;]\n"<<endl;}
 		else if(op==2){
 		
 			loginfo();
-			name="ali";
+			name="areej";
 			age=18;
 			uni_name="giki";
-			reg_number="2024222";
+			reg_number="2024113";
 			faculty="SWE";
 			n_subjects=4;
 			array[0]="CS101";
@@ -477,11 +543,12 @@ int main(){//file
 		}else{
 			cout <<"Invalid input try again\n";
 		} 
-		      
-
+		cout <<"Press any key to go further :]\n";
+getch();
+system("cls");
 			
     while(ch!=5){
-	
+	cout <<endl<<endl;
  	cout <<"==================================================================="<<endl;
  	cout <<"\t\t\tCAMPUS LIFE MANAGEMENT"<<endl;
  	cout <<"==================================================================="<<endl;
@@ -496,15 +563,23 @@ int main(){//file
  	
  	switch(ch){
  		case 1:
- 		displayMenu();
+ 			system("cls");
+ 			cout <<endl<<endl;
+ 		   displayMenu();
  			break;
  		case 2:
+ 			system("cls");
+ 			cout <<endl<<endl;
 		 budgetmanager();
 		 	break;
  		case 3:
+ 			system("cls");
+ 			cout <<endl<<endl;
  			academictracker(faculty,reg_number,n_subjects,array);
  			break;
  		case 4:
+ 			system("cls");
+ 			cout <<endl<<endl;
  		cout <<"==================================================================="<<endl;
  	    cout <<"\t\tYOUR DEATILS"<<endl; 
  		cout <<"==================================================================="<<endl; 
@@ -514,7 +589,7 @@ int main(){//file
  		cout<<"Select your choice:";
  		cin>>ch;
  		switch(ch){
- 			case 1:
+ 			case 1:cout <<endl<<endl;
  				cout <<"Enter your deatils:\n";
  				cout <<"Enter Name:";cin.ignore();
     			getline(cin, name);
@@ -532,7 +607,7 @@ int main(){//file
 	 				}cout<<endl;
     			cout <<"DATA SAVED SUCCESSFULLY ;]\n"<<endl;
  				break;
-		 case 2: 
+		 case 2: cout <<endl<<endl;
 				cout <<"\t\tYOUR DEATILS"<<endl; 
  				cout<<"NAME:"<<name<<endl;
  				cout<<"AGE:"<<age<<endl;
@@ -545,12 +620,15 @@ int main(){//file
 	    		}cout<<endl;
 	    		break;
 		  case 3:
-		  	cout<<"going to main;]\n";
+		  	cout<<"going to main;].Press any key to go back to main\n";
+		  	getch();
 	     default:
 	     	cout <<"invalid!(1-3)\n";}
  			break;
  		case 5:
+ 			system("cls");
  		 cout <<"You sure you want to exit!\n";
+		  getch();
  			break;
  		default:
  			cout <<"My Dear,select from given choice\n";
