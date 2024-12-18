@@ -527,10 +527,10 @@ int main(){//file
 		else if(op==2){
 		
 			loginfo();
-			name="areej";
+			name="ali";
 			age=18;
 			uni_name="giki";
-			reg_number="2024113";
+			reg_number="2024222";
 			faculty="SWE";
 			n_subjects=4;
 			array[0]="CS101";
